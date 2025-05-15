@@ -54,6 +54,15 @@ export default function Clientes({ base_clientes }: ClientesProps) {
                                 </tr>
                             ))}
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colSpan={5} className="border border-gray-300 px-4 py-2 text-center">
+                                    <Link href={`/nuevo/cliente`} className="btn btn-primary">
+                                        Crear Cliente
+                                    </Link>
+                                </td>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>

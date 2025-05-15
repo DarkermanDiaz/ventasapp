@@ -16,15 +16,16 @@ Route::get('/productos', function () {
 
 Route::get('/clientes/{id}', [DatabaseController::class, 'ShowClient']);
 Route::get('/clientes/{id}/editar', [DatabaseController::class, 'EditClient']);
+Route::get('/nuevo/cliente', [DatabaseController::class, 'CreateClient']);
 Route::delete('/clientes/{id}', [DatabaseController::class, 'DeleteClient']);
 
-Route::get('/nuevo/cliente', function () {
+Route::post('/nuevo/cliente', function ($nombre, $direccion, $giro, $dia_de_visita) {
     $nuevo = New Clientes;
 
-    $nuevo->nombre = 'Kujo Jotaro';
-    $nuevo->direccion = 'Calle Falsa 123';
-    $nuevo->giro = 'Comercio';
-    $nuevo->dia_de_visita = 'Lunes';
+    $nuevo->nombre = $nombre;
+    $nuevo->direccion = $direccion;
+    $nuevo->giro = $giro;
+    $nuevo->dia_de_visita = $dia_de_visita;
 
     $nuevo->save();
     return $nuevo;

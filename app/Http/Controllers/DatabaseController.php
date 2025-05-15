@@ -31,7 +31,7 @@ class DatabaseController extends Controller
 
     public function CreateClient()
     {
-        return Inertia::render('opcion para añadir un cliente');
+        return Inertia::render('crearcliente');
     }
 
     public function EditClient($id)
