@@ -48,6 +48,21 @@ class DatabaseController extends Controller
 
     public function ShowProducts()
     {
-        return Inertia::render('productos');
+        $base_productos = \App\Models\Productos::all();
+        return Inertia::render('productos', [
+            'base_productos' => $base_productos,
+        ]);
     }
+
+    public function ShowProduct($id)
+    {
+        return Inertia::render('producto/' . $id);
+    }
+
+    public function CreateProduct()
+    {
+        return Inertia::render('crearproducto');
+    }
+
+
 }

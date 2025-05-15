@@ -1,7 +1,7 @@
 import { PlaceholderPattern } from '@/components/ui/placeholder-pattern';
 import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem } from '@/types';
-import { Head } from '@inertiajs/react';
+import { Head, Link } from '@inertiajs/react';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -10,21 +10,17 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-const baseproductos = [
-    {
-        id: 1,
-        producto: 'Espada',
-        precio: 1,
-    },
-    {
-        id: 2,
-        producto: 'Escudo',
-        precio: 2,
-    },
-    // Agrega más productos según sea necesario
-];
+interface Producto {
+    id: number;
+    nombre: string;
+    precio: number;
+}
 
-export default function Productos() {
+interface ProductosProps {
+    base_productos: Producto[];
+}
+
+export default function Productos({ base_productos }: ProductosProps) {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Productos" />
@@ -40,14 +36,23 @@ export default function Productos() {
                             </tr>
                         </thead>
                         <tbody>
-                            {baseproductos.map((producto) => (
+                            {base_productos.map((producto) => (
                                 <tr key={producto.id} className="odd:bg-white even:bg-gray-50 dark:odd:bg-gray-800 dark:even:bg-gray-900">
                                     <td className="border border-gray-300 px-4 py-2">{producto.id}</td>
-                                    <td className="border border-gray-300 px-4 py-2">{producto.producto}</td>
+                                    <td className="border border-gray-300 px-4 py-2">{producto.nombre}</td>
                                     <td className="border border-gray-300 px-4 py-2">{producto.precio}</td>
                                 </tr>
                             ))}
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colSpan={3} className="border border-gray-300 px-4 py-2 text-center">
+                                    <a href={`/nuevo/producto`} className="btn btn-primary">
+                                        Agregar Producto
+                                    </a>
+                                </td>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>
